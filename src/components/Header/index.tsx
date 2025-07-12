@@ -24,7 +24,7 @@ export default function Header() {
     <HeaderBar>
       <div>
         <LinkItem to={`/`}>
-          <img src={logo} alt="EPLAY" />
+          <img src={logo} alt="EPLAY" />2
         </LinkItem>
         <Nav>
           <Links>
