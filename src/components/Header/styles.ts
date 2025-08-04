@@ -9,6 +9,7 @@ export const HeaderBar = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 80px;
 
   div {
     display: flex;
