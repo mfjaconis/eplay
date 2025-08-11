@@ -9,7 +9,7 @@ interface MenuNav {
 
 const menuNavLink: MenuNav[] = [
   {
-    link: "Catergoria",
+    link: "Categoria",
   },
   {
     link: "Novidades",
@@ -29,7 +29,7 @@ export default function Header() {
         <Nav>
           <Links>
             {menuNavLink.map((item, index) => (
-              <LinkItem to={`/${item.link}`} key={index}>
+              <LinkItem to={`/${item.link.toLocaleLowerCase()}`} key={index}>
                 {item.link}
               </LinkItem>
             ))}
