@@ -1,16 +1,16 @@
 import styled from "styled-components";
-import { cores } from "../../styles";
 import { Link } from "react-router-dom";
 
-export const ButtonContainer = styled.button`
-  width: 107px;
+import { cores } from "../../styles";
+import type { Props } from ".";
+
+export const ButtonContainer = styled.button<Props>`
   border-radius: 8px;
   color: ${cores.branca};
-  border: 2px solid ${cores.branca};
+  background-color:${(props) => props.variant === 'primary' ? cores.verde : 'transparent'};
+  border: ${(props) => props.variant === 'primary' ? 'none' : `2px solid ${cores.branca}`};
   font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+  font-weight: bold;
   padding: 8px 16px;
 `;
 
