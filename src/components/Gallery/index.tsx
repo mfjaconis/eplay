@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import galeryImg from "../../assets/images/galary-img.png";
 import spiderman from "../../assets/images/banner-homem-aranha.png";
 import play from "../../assets/images/button-play.svg";
@@ -11,12 +13,8 @@ import {
   Modal,
   ModalContent,
 } from "./styles";
-import { useState } from "react";
+import type { GalleryItem } from "../../pages/Home";
 
-interface GalleryItem {
-  type: "image" | "video";
-  url: string;
-}
 
 type Props = {
   defaultCover: string;

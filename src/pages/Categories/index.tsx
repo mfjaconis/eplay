@@ -1,96 +1,43 @@
+import { useEffect, useState } from "react";
 import ProductList from "../../components/ProductsList";
-import type Game from "../../models/Game";
-import resident from "../../assets/images/resident.png";
-import diablo from "../../assets/images/diablo.png";
-import starWars from "../../assets/images/star_wars.png";
-import zelda from "../../assets/images/zelda.png";
-
-
-const promocoes: Game[] = [
-    {
-        id: 1,
-        category:"Ação",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora quisquam, aliquid, qui cupiditate, asperiores est saepe laborum totam a eaque doloremque tenetur amet natus hic! Ut quas quis necessitatibus. Quidem!",
-        image: resident,
-        title: "Residente Evil 4",
-        infos: ['10%', "R$250,00"],
-        system: "Windows"
-    },
-    {
-        id: 2,
-        category:"Ação",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora quisquam, aliquid, qui cupiditate, asperiores est saepe laborum totam a eaque doloremque tenetur amet natus hic! Ut quas quis necessitatibus. Quidem!",
-        image: diablo,
-        title: "Diablo",
-        infos: ['10%', "R$250,00"],
-        system: "Windows"
-    },
-    {
-        id: 3,
-        category:"Ação",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora quisquam, aliquid, qui cupiditate, asperiores est saepe laborum totam a eaque doloremque tenetur amet natus hic! Ut quas quis necessitatibus. Quidem!",
-        image: starWars,
-        title: "Star Wars",
-        infos: ['5%', "R$290,00"],
-        system: "Windows"
-    },
-    {
-        id: 4,
-        category:"Ação",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora quisquam, aliquid, qui cupiditate, asperiores est saepe laborum totam a eaque doloremque tenetur amet natus hic! Ut quas quis necessitatibus. Quidem!",
-        image: zelda,
-        title: "Zelda",
-        infos: ['15%', "R$230,00"],
-        system: "Windows"
-    }
-]
-
-const emBreve: Game[] = [
-    {
-        id: 5,
-        category:"Ação",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora quisquam, aliquid, qui cupiditate, asperiores est saepe laborum totam a eaque doloremque tenetur amet natus hic! Ut quas quis necessitatibus. Quidem!",
-        image: resident,
-        title: "Residente Evil 4",
-        infos: ['17/05/2026'],
-        system: "Windows"
-    },
-    {
-        id: 6,
-        category:"Ação",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora quisquam, aliquid, qui cupiditate, asperiores est saepe laborum totam a eaque doloremque tenetur amet natus hic! Ut quas quis necessitatibus. Quidem!",
-        image: diablo,
-        title: "Diablo",
-        infos: ['17/05/2026'],
-        system: "Windows"
-    },
-    {
-        id: 7,
-        category:"Ação",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora quisquam, aliquid, qui cupiditate, asperiores est saepe laborum totam a eaque doloremque tenetur amet natus hic! Ut quas quis necessitatibus. Quidem!",
-        image: starWars,
-        title: "Star Wars",
-        infos: ['17/05/2026'],
-        system: "Windows"
-    },
-    {
-        id: 8,
-        category:"Ação",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora quisquam, aliquid, qui cupiditate, asperiores est saepe laborum totam a eaque doloremque tenetur amet natus hic! Ut quas quis necessitatibus. Quidem!",
-        image: zelda,
-        title: "Zelda",
-        infos: ['17/05/2026'],
-        system: "Windows"
-    }
-]
 
 export default function Categories() {
-    return (
-        <>
-            <ProductList title="RPG" games={promocoes} background="gray" />
-            <ProductList title="Ação" games={emBreve} background="black" />
-            <ProductList title="Aventuras" games={promocoes} background="gray" />
-            <ProductList title="FPS" games={promocoes} background="black" />
-        </>
-    )
+  const [actionCategory, setActionCategory] = useState([]);
+  const [sportsCategory, setSportsCategory] = useState([]);
+  const [simulationCategory, setSimulationCategory] = useState([]);
+  const [fightCategory, setFightCategory] = useState([]);
+  const [rpgCategory, setRpgCategory] = useState([]);
+
+  useEffect(() => {
+    fetch("https://ebac-fake-api.vercel.app/api/eplay/acao")
+      .then((response) => response.json())
+      .then((response) => setActionCategory(response));
+
+    fetch("https://ebac-fake-api.vercel.app/api/eplay/esportes")
+      .then((response) => response.json())
+      .then((response) => setSportsCategory(response));
+
+    fetch("https://ebac-fake-api.vercel.app/api/eplay/luta")
+      .then((response) => response.json())
+      .then((response) => setFightCategory(response));
+
+    fetch("https://ebac-fake-api.vercel.app/api/eplay/simulacao")
+      .then((response) => response.json())
+      .then((response) => setSimulationCategory(response));
+
+    fetch("https://ebac-fake-api.vercel.app/api/eplay/rpg")
+      .then((response) => response.json())
+      .then((response) => setRpgCategory(response));
+  }, []);
+
+
+  return (
+    <>
+      <ProductList title="Esportes" games={sportsCategory} background="black" />
+      <ProductList title="Ação" games={actionCategory} background="gray" />
+      <ProductList title="Luta" games={fightCategory} background="black" />
+      <ProductList title="Simulação" games={simulationCategory} background="gray" />
+      <ProductList title="RPG" games={rpgCategory} background="black" />
+    </>
+  );
 }

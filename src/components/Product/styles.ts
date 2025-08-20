@@ -11,6 +11,13 @@ export const Card = styled.div`
   ${TagContainer} {
     margin-right: 8px;
   }
+
+  img {
+    display: block;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+  }
 `;
 
 export const Title = styled.h3`
@@ -28,6 +35,7 @@ export const Description = styled.p`
   line-height: 22px;
   margin-top: 16px;
   margin-bottom: 8px;
+  
 `;
 
 export const Infos = styled.div`

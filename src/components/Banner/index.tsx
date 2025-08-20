@@ -1,17 +1,31 @@
 import { Image, Title, Text } from "./styles";
-import bannerHomemAranha from "../../assets/images/banner-homem-aranha.png";
 import Tag from "../Tag";
 import Button from "../Button";
+import { useEffect, useState } from "react";
+import type { Game } from "../../pages/Home";
+import { formatPrice } from "../ProductsList";
 
 export default function Banner() {
+  const [gameBanner, setGameBanner] = useState<Game>();
+
+  useEffect(() => {
+    fetch("https://ebac-fake-api.vercel.app/api/eplay/destaque")
+      .then((response) => response.json())
+      .then((response) => setGameBanner(response))
+  }, []);
+
+  if(!gameBanner){
+   return <div>Carregando...</div>
+  }
+
   return (
-    <Image style={{ backgroundImage: `url(${bannerHomemAranha})` }}>
+    <Image style={{ backgroundImage: `url(${gameBanner?.media.cover})` }}>
       <div className="container">
         <Tag size="big">Destaque do dia</Tag>
         <div>
-          <Title>Marvel's Spider-Man: Miles Morales PS4 & PS5</Title>
+          <Title>{gameBanner.name}</Title>
           <Text>
-            De <span>R$ 250,00</span> <br /> por apenas R$ 99,90
+            De <span>{formatPrice(gameBanner.prices.old)}</span> <br /> por apenas {formatPrice(gameBanner.prices.current)}
           </Text>
         </div>
         <Button
