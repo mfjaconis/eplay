@@ -6,14 +6,13 @@ import { TagContainer } from "../Tag/styles";
 
 export const Banner = styled.div`
     position: relative;
-    display: block;
     width: 100%;
     height: 480px;
     padding-top: 16px;
     background-image: url(${bannerImg});
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 100%;
+    background-size: cover;
     
     &::after{
         position: absolute;

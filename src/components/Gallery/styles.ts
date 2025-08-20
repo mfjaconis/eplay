@@ -1,0 +1,97 @@
+import styled from "styled-components";
+
+import { cores } from "../../styles";
+
+export const Items = styled.ul`
+  display: flex;
+`;
+
+export const Action = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.73);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  border: none;
+  transition: opacity 0.5s ease;
+`;
+
+export const Item = styled.li`
+  position: relative;
+  list-style: none;
+  margin-right: 16px;
+  cursor: pointer;
+
+  > img {
+    border: 2px solid ${cores.branca};
+    border-radius: 8px;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+
+  &:hover {
+    ${Action} {
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+  }
+`;
+
+export const Modal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index:1;
+
+  display:none;
+
+  &.visible{
+    display:block;
+  }
+`;
+
+export const ModalContent = styled.div`
+  height: 100%;
+  max-width: 960px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+
+  header{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5px;
+    margin-bottom: 24px;
+  }
+
+  img, iframe{
+    display: block;
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: cover;
+  }
+
+  iframe{
+    border: none;
+    height: 480px;
+  }
+
+  h4{
+    font-size: 18px;
+    font-weight: bold;
+  }
+`
+
+export const CloseButton = styled.img`
+  cursor: pointer;
+`
